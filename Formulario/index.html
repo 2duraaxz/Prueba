@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explora la Ingeniería</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="/Imagenes/Logo1.png" type="LOGO">
+    <meta name="author" content="Azael Duran">
+
+    <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        (function() {
+            emailjs.init("oUH2MMZYbcgDdhM7T"); // 🔴 Reemplaza con tu Public Key de EmailJS
+        })();
+
+        function enviarFormulario(event) {
+            event.preventDefault();
+
+            let nombre = document.getElementById("nombre").value;
+            let email = document.getElementById("email").value;
+            let mensaje = document.getElementById("mensaje").value;
+
+            if (nombre === "" || email === "" || mensaje === "") {
+                alert("Por favor, completa todos los campos.");
+                return;
+            }
+
+            let parametros = {
+                nombre: nombre,
+                email: email,
+                mensaje: mensaje
+            };
+
+            emailjs.send("service_1c1rlr5", "template_vzuj5t8", parametros)
+                .then(response => {
+                    alert("Mensaje enviado correctamente");
+                }, error => {
+                    alert("Error al enviar el mensaje: " + error);
+                });
+        }
+    </script>
+</head>
+
+<body>
+    <form onsubmit="enviarFormulario(event)">
+        <h2>Formulario de Contacto</h2>
+        <div class="form_input">
+            <label for="nombre">Nombre Completo</label>
+            <input type="text" placeholder="Nombre" id="nombre">
+        </div>
+        <div class="form_input">
+            <label for="email">Email</label>
+            <input type="email" placeholder="Correo" id="email">
+        </div>
+        <div class="form_input">
+            <label for="mensaje">Mensaje</label>
+            <textarea placeholder="Escribe tu Mensaje" id="mensaje"></textarea>
+        </div>
+        <div class="form_input">
+            <label>Acepto los términos y condiciones <input class="checkbox" type="checkbox" required></label>
+        </div>
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Explora la Ingeniería</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="Imagenes/logo3.png" type="image/png" />
+    <meta name="author" content="Azael Duran" />
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            if (!localStorage.getItem("politicaAceptada")) {
+                document.getElementById("politica-modal").style.display = "flex";
+                document.body.style.overflow = "hidden";
+            }
+        });
+
+        function aceptarPolitica() {
+            localStorage.setItem("politicaAceptada", "true");
+            document.getElementById("politica-modal").style.display = "none";
+            document.body.style.overflow = "auto";
+        }
+
+        function rechazarPolitica() {
+            alert("Debe aceptar la política de privacidad para continuar.");
+            window.location.href = "https://www.google.com";
+        }
+
+        function mostrarNota() {
+            let nota = document.getElementById("nota-nosotros");
+            nota.classList.toggle("mostrar");
+        }
+
+        function mostrarImagenBandera() {
+            document.getElementById("modal-bandera").style.display = "flex";
+        }
+
+        function cerrarModalBandera() {
+            document.getElementById("modal-bandera").style.display = "none";
+        }
+    </script>
+
+</head>
+
+<body>
+    <header>
+        <div class="left-container">
+            <img src="Imagenes/logo2.png" alt="Logo" class="header-icon" />
+            <h1>Explora la Ingeniería</h1>
+        </div>
+        <a href="javascript:void(0);" class="nav-link" onclick="mostrarNota()">Nosotros</a>
+        <div class="right-container">
+            <img src="Imagenes/bandera.png" alt="Bandera" class="header-icon" onclick="mostrarImagenBandera()" />
+        </div>
+    </header>
+
+    <!-- Modal imagen bandera -->
+    <div id="modal-bandera" onclick="cerrarModalBandera()">
+        <img src="Imagenes/QR.png" alt="Imagen relacionada a la bandera" />
+    </div>
+
+    <!-- Nota "Nosotros" -->
+    <div id="nota-nosotros" class="nota">
+        <p>Somos un sitio web dedicado a ayudar y orientar a las personas interesadas en estudiar ingenierías.</p>
+    </div>
+
+    <main>
+        <section>
+            <h3>¿Para qué sirve este Sitio?</h3>
+            <p>
+                Este sitio web fue creado para ayudar y orientar a las personas que desean estudiar alguna ingeniería. Nuestro objetivo es brindar información clara y concreta sobre la ingeniería en nuestro país.
+            </p>
+        </section>
+        <section class="button-container">
+            <button onclick="window.location.href='ingenierias1/index.html'">Ingenierías Clásicas</button>
+            <button onclick="window.location.href='ingenierias2/index.html'">Ingenierías Modernas y Especializadas</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Explora la Ingeniería. Todos los derechos <a href="Formulario/index.html">Soporte</a></p>
+    </footer>
+
+    <!-- Política de Privacidad -->
+    <div id="politica-modal" class="modal">
+        <div class="modal-contenido">
+            <h2>Política de Privacidad</h2>
+            <p>Usamos cookies y otros datos para mejorar su experiencia en nuestro sitio web. ¿Acepta nuestra política de privacidad?</p>
+            <div class="botones">
+                <button onclick="aceptarPolitica()">Aceptar</button>
+                <button onclick="rechazarPolitica()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
